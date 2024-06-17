@@ -5,8 +5,8 @@ import java.util.NoSuchElementException;
 public class SimpleQueue<T> {
     private final SimpleStack<T> input = new SimpleStack<>();
     private final SimpleStack<T> output = new SimpleStack<>();
-    int size;
-    T result;
+    private int size;
+
     public T poll() {
         if (size == 0) {
             throw new NoSuchElementException("Queue is empty");
@@ -15,7 +15,7 @@ public class SimpleQueue<T> {
             output.push(input.pop());
         }
         size--;
-        result = output.pop();
+        T result = output.pop();
         for (int i = 0; i < size; i++) {
             input.push(output.pop());
         }
