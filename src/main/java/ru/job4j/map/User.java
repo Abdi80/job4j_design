@@ -40,10 +40,10 @@ public class User {
         return Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
     }
 
-    /*@Override
+    @Override
     public int hashCode() {
         return Objects.hash(name, birthday);
-    }*/
+    }
 
     public static void main(String[] args) {
         Calendar birthday = Calendar.getInstance();
@@ -65,5 +65,7 @@ public class User {
                 hashCode2, hash2, bucket2);
         System.out.println();
         System.out.println(user1 == user2);
+        System.out.println(Objects.equals(user1, user2));
+        System.out.println(map);
     }
 }
