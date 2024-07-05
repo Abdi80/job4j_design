@@ -63,5 +63,7 @@ public class User {
         System.out.println();
         System.out.printf("User2 hashcode : %S, hash : %S, bucket : %S",
                 hashCode2, hash2, bucket2);
+        System.out.println();
+        System.out.println(user1 == user2);
     }
 }
