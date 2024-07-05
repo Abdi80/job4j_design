@@ -28,7 +28,7 @@ public class User {
         return birthday;
     }
 
-    /*@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -38,12 +38,12 @@ public class User {
         }
         User user = (User) o;
         return Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
-    }*/
+    }
 
-    @Override
+    /*@Override
     public int hashCode() {
         return Objects.hash(name, birthday);
-    }
+    }*/
 
     public static void main(String[] args) {
         Calendar birthday = Calendar.getInstance();
