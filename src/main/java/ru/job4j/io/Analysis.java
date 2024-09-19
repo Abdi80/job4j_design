@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Analysis {
-    public void unavailable(String source, String target) {
+    public static void unavailable(String source, String target) {
         List<String> list = read(source);
         write(list, target);
     }
 
-    public List<String> read(String source) {
+    public static List<String> read(String source) {
         List<String> listTime = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
             String start = null;
@@ -40,7 +40,7 @@ public class Analysis {
         return listTime;
     }
 
-    public void write(List<String> list, String target) {
+    public static void write(List<String> list, String target) {
         try (PrintWriter output = new PrintWriter(
                 new BufferedOutputStream(
                         new FileOutputStream(target)
@@ -55,7 +55,6 @@ public class Analysis {
     }
 
     public static void main(String[] args) {
-        Analysis analysis = new Analysis();
-        analysis.unavailable("data/server.log", "data/target.csv");
+        unavailable("data/server.log", "data/target.csv");
     }
 }
