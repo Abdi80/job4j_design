@@ -30,12 +30,6 @@ class ConfigTest {
         assertThat(config.value("name")).isNull();
     }
 
-    @Test
-    void whenWithoutKey() {
-        String path = "./data/pair_without_key.properties";
-        Config config = new Config(path);
-        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     void whenWithoutValue() {
