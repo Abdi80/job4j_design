@@ -15,7 +15,6 @@ public class Dir {
         System.out.println(String.format("Размер директории: %s", file.getTotalSpace()));
         printFileNameSize(file);
     }
-
     private static void printFileNameSize(File directory) {
         for (File subfile : directory.listFiles()) {
             if (subfile.isFile()) {
