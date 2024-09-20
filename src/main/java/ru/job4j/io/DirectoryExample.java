@@ -16,6 +16,7 @@ public class DirectoryExample {
         for (String fileName : list) {
             System.out.println(fileName);
         }
+
         File[] listFiles = target.listFiles();
         for (File file : listFiles) {
             System.out.println(file);
