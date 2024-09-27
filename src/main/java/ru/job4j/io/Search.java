@@ -10,7 +10,8 @@ import java.util.function.Predicate;
 public class Search {
     public static void main(String[] args) throws IOException {
         checkArguments(args);
-        search(Paths.get(args[0]), path -> path.toFile().getName().endsWith(args[1])).forEach(System.out::println);
+        search(Paths.get(args[0]), path -> path.toFile().getName().endsWith(args[1]))
+                .forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
@@ -25,10 +26,19 @@ public class Search {
         }
         Path start = Paths.get(args[0]);
         if (!Files.exists(start)) {
-            throw new IllegalArgumentException(String.format("Not exist %s", start.toAbsolutePath()));
+            throw new IllegalArgumentException(String.format("Not exist %s",
+                    start.toAbsolutePath()));
         }
         if (!Files.isDirectory(start)) {
-            throw new IllegalArgumentException(String.format("Not directory %s", start.toAbsolutePath()));
+            throw new IllegalArgumentException(String.format("Not directory %s",
+                    start.toAbsolutePath()));
+        }
+        if (!args[1].startsWith(".")) {
+            throw new IllegalArgumentException(String.format("%s - should start with a dot",
+                    args[1]));
+        }
+        if (args[1].length() < 3) {
+            throw new IllegalArgumentException(String.format("%s - too short", args[1]));
         }
     }
 }
