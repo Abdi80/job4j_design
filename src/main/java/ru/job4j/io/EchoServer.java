@@ -16,13 +16,16 @@ public class EchoServer {
                      BufferedReader input = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                    String stringFirst = input.readLine();
+                    if (parseLine(stringFirst)) {
+                        socket.close();
+                        server.close();
+                        return;
+                    } else {
+                        System.out.println(stringFirst);
+                    }
                     for (String string = input.readLine(); string != null && !string.isEmpty();
                         string = input.readLine()) {
-                        if (parseLine(string)) {
-                            socket.close();
-                            server.close();
-                            return;
-                        }
                         System.out.println(string);
                     }
                     output.flush();
@@ -32,12 +35,14 @@ public class EchoServer {
     }
 
     private static boolean parseLine(String string) {
-        boolean result = false;
-        String[] arguments = string.split(" ");
-        if (arguments[1].contains("msg=")) {
-            String[] msg = arguments[1].split("=", 2);
-            result = "Bye".equals(msg[1]);
+        if (string == null || string.isEmpty()) {
+            throw new IllegalArgumentException("Error: the line is missing");
         }
-        return result;
+        String[] arguments = string.split(" ");
+        if (arguments.length < 2 || arguments[1] == null || !arguments[1].contains("msg=")) {
+            throw new IllegalArgumentException("Error: the second argument is missing or wrong");
+        }
+        String[] msg = arguments[1].split("=", 2);
+        return "Bye".equals(msg[1]);
     }
 }
