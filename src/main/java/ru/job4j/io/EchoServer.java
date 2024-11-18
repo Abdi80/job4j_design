@@ -16,17 +16,17 @@ public class EchoServer {
                      BufferedReader input = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    String stringFirst = input.readLine();
-                    if (parseLine(stringFirst)) {
-                        socket.close();
-                        server.close();
-                        return;
-                    } else {
-                        System.out.println(stringFirst);
-                    }
-                    for (String string = input.readLine(); string != null && !string.isEmpty();
-                        string = input.readLine()) {
-                        System.out.println(string);
+                    String request = parseLine(input.readLine());
+                    switch (request) {
+                        case "Exit":
+                            socket.close();
+                            server.close();
+                            break;
+                        case "Hello":
+                            output.write("Hello, dear friend.".getBytes());
+                            break;
+                        default:
+                            output.write(request.getBytes());
                     }
                     output.flush();
                 }
@@ -34,7 +34,7 @@ public class EchoServer {
         }
     }
 
-    private static boolean parseLine(String string) {
+    private static String parseLine(String string) {
         if (string == null || string.isEmpty()) {
             throw new IllegalArgumentException("Error: the line is missing");
         }
@@ -43,6 +43,6 @@ public class EchoServer {
             throw new IllegalArgumentException("Error: the second argument is missing or wrong");
         }
         String[] msg = arguments[1].split("=", 2);
-        return "Bye".equals(msg[1]);
+        return msg[1];
     }
 }
