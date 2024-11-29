@@ -27,6 +27,22 @@ public class Car {
         this.owners = owners;
     }
 
+    public boolean isNewCar() {
+        return newCar;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public String[] getOwners() {
+        return owners;
+    }
+
     @Override
     public String toString() {
         return "Car{"

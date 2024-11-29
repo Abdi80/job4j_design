@@ -16,6 +16,10 @@ public class Engine {
         this.volume = volume;
     }
 
+    public double getVolume() {
+        return volume;
+    }
+
     @Override
     public String toString() {
         return "Engine{"
