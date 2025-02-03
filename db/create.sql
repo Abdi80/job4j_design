@@ -42,8 +42,10 @@ CREATE TABLE attachs(
 	id SERIAL PRIMARY KEY,
 	path VARCHAR(255),
 	items_id INT REFERENCES items(id)
+);
+
+CREATE TABLE roles_rules(
+	id SERIAL PRIMARY KEY,
+	roles_id INT REFERENCES roles(id),
+	rules_id INT REFERENCES rules(id)
 )
-
-
-
-

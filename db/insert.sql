@@ -31,12 +31,6 @@ INSERT INTO comments (comment, items_id) VALUES ('not frozen', 4);
 
 INSERT INTO attachs (path, items_id) VALUES ('C:\Users\Public\Documents', 4);
 
-CREATE TABLE roles_rules(
-	id SERIAL PRIMARY KEY,
-	roles_id INT REFERENCES roles(id),
-	rules_id INT REFERENCES rules(id)
-);
-
 INSERT INTO roles_rules (roles_id, rules_id) VALUES (1, 1);
 INSERT INTO roles_rules (roles_id, rules_id) VALUES (1, 2);
 INSERT INTO roles_rules (roles_id, rules_id) VALUES (1, 3);
