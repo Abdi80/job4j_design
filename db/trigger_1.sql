@@ -1,0 +1,18 @@
+CREATE TRIGGER 	tax_trigger
+	AFTER INSERT
+	ON products
+	REFERENCING NEW TABLE AS inserted
+	FOR EACH STATEMENT
+	EXECUTE PROCEDURE tax();
+
+CREATE OR REPLACE FUNCTION tax()
+	RETURNS TRIGGER AS
+$$
+	BEGIN
+		UPDATE products
+		SET price = price * 1.1
+		WHERE ID = (SELECT ID FROM inserted);
+		RETURN NEW;
+	END;
+$$
+LANGUAGE 'plpgsql';
