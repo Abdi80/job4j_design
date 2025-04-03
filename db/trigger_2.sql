@@ -8,9 +8,7 @@ CREATE OR REPLACE FUNCTION tax_2()
 	RETURNS TRIGGER AS
 $$
 	BEGIN
-		UPDATE products
-		SET price = price * 1.1
-		WHERE id = new.id;
+		new.price = new.price * 1.1;
 		RETURN NEW;
 	END;
 $$
